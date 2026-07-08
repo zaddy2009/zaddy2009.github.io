@@ -176,7 +176,7 @@ function switchTab(tab) {
 }
 
 function fakePurchase(tier) {
-    alert(`✅ Processing payment for ${tier}...\n\nJust kidding lol. Send Stupidly the bread.`);
+    alert(`✅ Processing payment for ${tier}...\n\npayment declined. get ur bread up.`);
 }
 
 // FREDDY JUMPSCARE (1 in 10,000 chance)
@@ -191,7 +191,7 @@ function triggerJumpscare() {
 }
 
 setInterval(() => {
-    if (Math.random() < 1 / 100) triggerJumpscare();
+    if (Math.random() < 1 / 5) triggerJumpscare();
 }, 1000);
 </script>
 </body>
