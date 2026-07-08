@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FakeFiles Terminal</title>
+
+<style>
+html,body{
+    margin:0;
+    height:100%;
+    background:#000;
+    color:#00ff66;
+    overflow:hidden;
+    font-family:Consolas,monospace;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+}
+
+.scanlines{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            transparent 0px,
+            transparent 2px,
+            rgba(255,255,255,.03) 3px
+        );
+    animation:flicker .15s infinite;
+    z-index:2;
+}
+
+@keyframes flicker{
+    50%{opacity:.95;}
+}
+
+.content{
+    position:relative;
+    z-index:3;
+    width:min(1000px,90%);
+    margin:40px auto;
+}
+
+.box{
+    border:1px solid #00ff66;
+    background:rgba(0,0,0,.75);
+    padding:20px;
+    box-shadow:0 0 20px #00ff66;
+    margin-bottom:20px;
+}
+
+h1{
+    text-align:center;
+    text-shadow:0 0 15px #00ff66;
+}
+
+.cursor{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+.case{
+    border-top:1px solid #00aa44;
+    margin-top:15px;
+    padding-top:15px;
+}
+
+small{
+    color:#66ff99;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="scanlines"></div>
+
+<div class="content">
+
+<div class="box">
+<h1>FAKEFILES TERMINAL</h1>
+
+<p id="boot"></p>
+
+<p>
+Status:
+<span style="color:#8cff8c;">ONLINE</span>
+<span class="cursor">█</span>
+</p>
+
+<hr>
+
+<p>
+<strong>NOTICE:</strong><br>
+Everything below is fictional and intended as humor.
+No real people or personal information appear here.
+</p>
+</div>
+
+<div class="box">
+
+<h2>Recent Case Files</h2>
+
+<div class="case">
+<b>CaptainToaster</b><br>
+Charges:
+<ul>
+<li>Burned frozen waffles.</li>
+<li>Forgot cereal after pouring milk.</li>
+<li>Lost an argument with a microwave.</li>
+</ul>
+</div>
+
+<div class="case">
+<b>GoblinIntern</b><br>
+Charges:
+<ul>
+<li>Pressed Reply All.</li>
+<li>Borrowed office pens forever.</li>
+<li>Ate someone else's donut.</li>
+</ul>
+</div>
+
+<div class="case">
+<b>PizzaBandit42</b><br>
+Charges:
+<ul>
+<li>Stole the last pizza slice.</li>
+<li>Pineapple on everything.</li>
+<li>Asked for ranch with sushi.</li>
+</ul>
+</div>
+
+<div class="case">
+<b>DuckOverlord</b><br>
+Charges:
+<ul>
+<li>Organized suspiciously disciplined ducks.</li>
+<li>Quacked during meetings.</li>
+<li>Declared bread the national currency.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="box">
+<small>
+FakeFiles Terminal v1.0 • Parody Website
+</small>
+</div>
+
+</div>
+
+<script>
+const bootText=[
+"Initializing terminal...",
+"Connecting to definitely-not-real servers...",
+"Loading fictional database...",
+"Compiling nonsense...",
+"Access Granted."
+];
+
+let i=0;
+
+function typeLine(){
+    if(i<bootText.length){
+        boot.innerHTML+=bootText[i]+"<br>";
+        i++;
+        setTimeout(typeLine,500);
+    }
+}
+
+typeLine();
+
+// Matrix rain
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+    canvas.width=innerWidth;
+    canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*";
+const size=18;
+const columns=Math.floor(innerWidth/size);
+const drops=[];
+
+for(let i=0;i<columns;i++) drops[i]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff66";
+    ctx.font=size+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+
+        const text=chars[Math.floor(Math.random()*chars.length)];
+
+        ctx.fillText(text,i*size,drops[i]*size);
+
+        if(drops[i]*size>canvas.height && Math.random()>0.98)
+            drops[i]=0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw,40);
+</script>
+
+</body>
+</html>
