@@ -134,9 +134,7 @@ Better watch your back... or your IP next.
 
 <!-- FREDDY JUMPSCARE -->
 <div id="jumpscare">
-    <img src="https://files.catbox.moe/aycciv.m4a" wait no, use this image instead:
-    <!-- Replace the src below with your Freddy image link if you upload it -->
-    <img src="https://i.imgur.com/0zK8vL2.png" alt="Freddy Jumpscare">   <!-- temporary placeholder, replace with your uploaded link -->
+    <img src="https://files.catbox.moe/i61xlc.png" alt="Freddy Jumpscare">
 </div>
 
 <script>
@@ -173,7 +171,7 @@ function fakePurchase(tier) {
     alert(`✅ Processing payment for ${tier}...\n\nJust kidding lol. Send Stupidly the bread.`);
 }
 
-// Freddy Jumpscare
+// FREDDY JUMPSCARE (1 in 10,000 chance)
 const jumpscare = document.getElementById('jumpscare');
 const scream = new Audio('https://www.soundjay.com/buttons/sounds/fnaf-jumpscare.mp3');
 
@@ -185,7 +183,7 @@ function triggerJumpscare() {
 }
 
 setInterval(() => {
-    if (Math.random() < 1 / 100000) triggerJumpscare();
+    if (Math.random() < 1 / 10000) triggerJumpscare();
 }, 1000);
 </script>
 </body>
