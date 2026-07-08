@@ -39,6 +39,11 @@ nav{background:rgba(0,0,0,0.95);border-bottom:1px solid #fff;padding:15px 0;posi
 .buy-btn:hover{background:#fff;color:#000;box-shadow:0 0 20px #0ff;}
 
 .lyrics{white-space:pre-wrap;font-size:1.05em;line-height:1.7;background:#0a0a0a;padding:30px;border:1px solid #fff;box-shadow:0 0 15px #0ff;text-align:center;margin-top:15px;}
+
+#jumpscare{position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;display:none;align-items:center;justify-content:center;z-index:9999;}
+#jumpscare img{width:85%;height:85%;object-fit:contain;animation:foxyflash 0.6s infinite alternate;}
+@keyframes foxyflash{from{filter:brightness(1) hue-rotate(0deg);}to{filter:brightness(3) hue-rotate(40deg);}}
+#jumpscare.active{display:flex;}
 </style>
 </head>
 <body>
@@ -93,14 +98,12 @@ nav{background:rgba(0,0,0,0.95);border-bottom:1px solid #fff;padding:15px 0;posi
     <div id="song" class="tab-content">
         <div class="box">
             <h2>DOXBIN ANTHEM</h2>
-            <p style="text-align:center;">by Stupidly ft. Miku and teto</p>
-            
+            <p style="text-align:center;">by Stupidly ft. Miku</p>
             <div style="text-align:center;margin:25px 0;">
                 <audio controls style="width:90%;">
                     <source src="https://files.catbox.moe/aycciv.m4a" type="audio/mpeg">
                 </audio>
             </div>
-
             <div class="lyrics">
 YO YO WELCOME TO THE DOXBIN
 IP SNATCHIN, NO CAP, WE DROPPIN IN
@@ -119,8 +122,6 @@ Pigbananna stealin' e-huzz, bro you slow
 
 We got the packets, we got the logs
 Telegram groups full of nasty dogs
-Send your address, send your hoe
-We'll post it all on Stupidly's show
 
 [Outro]
 Stupidly's Doxbin — we own the net
@@ -131,9 +132,11 @@ Better watch your back... or your IP next.
 
 </div>
 
-<!-- Foxy Jumpscare -->
+<!-- FREDDY JUMPSCARE -->
 <div id="jumpscare">
-    <img src="https://i.imgur.com/2v5zXzK.png" alt="Foxy Jumpscare">
+    <img src="https://files.catbox.moe/aycciv.m4a" wait no, use this image instead:
+    <!-- Replace the src below with your Freddy image link if you upload it -->
+    <img src="https://i.imgur.com/0zK8vL2.png" alt="Freddy Jumpscare">   <!-- temporary placeholder, replace with your uploaded link -->
 </div>
 
 <script>
@@ -170,7 +173,7 @@ function fakePurchase(tier) {
     alert(`✅ Processing payment for ${tier}...\n\nJust kidding lol. Send Stupidly the bread.`);
 }
 
-// Foxy Jumpscare
+// Freddy Jumpscare
 const jumpscare = document.getElementById('jumpscare');
 const scream = new Audio('https://www.soundjay.com/buttons/sounds/fnaf-jumpscare.mp3');
 
@@ -178,7 +181,7 @@ function triggerJumpscare() {
     jumpscare.classList.add('active');
     scream.currentTime = 0;
     scream.play().catch(() => {});
-    setTimeout(() => jumpscare.classList.remove('active'), 900);
+    setTimeout(() => jumpscare.classList.remove('active'), 1000);
 }
 
 setInterval(() => {
