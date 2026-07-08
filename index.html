@@ -15,9 +15,9 @@ h1{position:relative;animation:glitch 1.5s infinite;}
 h1::before,h1::after{content:attr(data-text);position:absolute;left:0;width:100%;overflow:hidden;opacity:.8;}
 h1::before{animation:glitchTop 1s infinite;}
 h1::after{animation:glitchBottom 1s infinite;}
-@keyframes glitch{0%,100%{transform:translate(0);} 20%{transform:translate(-2px,2px);} 40%{transform:translate(2px,-2px);} 60%{transform:translate(-1px,1px);}}
-@keyframes glitchTop{0%,100%{clip-path:inset(0 0 80% 0);} 50%{clip-path:inset(10% 0 60% 0);transform:translate(-4px,-2px);}}
-@keyframes glitchBottom{0%,100%{clip-path:inset(80% 0 0 0);} 50%{clip-path:inset(60% 0 10% 0);transform:translate(4px,2px);}}
+@keyframes glitch{0%,100%{transform:translate(0);}20%{transform:translate(-2px,2px);}40%{transform:translate(2px,-2px);}60%{transform:translate(-1px,1px);}}
+@keyframes glitchTop{0%,100%{clip-path:inset(0 0 80% 0);}50%{clip-path:inset(10% 0 60% 0);transform:translate(-4px,-2px);}}
+@keyframes glitchBottom{0%,100%{clip-path:inset(80% 0 0 0);}50%{clip-path:inset(60% 0 10% 0);transform:translate(4px,2px);}}
 .cursor{animation:blink 1s infinite;}
 @keyframes blink{50%{opacity:0;}}
 .terminal{border:1px solid #fff;padding:10px;margin-top:15px;background:#050505;box-shadow:0 0 15px #fff;min-height:80px;}
@@ -38,12 +38,7 @@ nav{background:rgba(0,0,0,0.95);border-bottom:1px solid #fff;padding:15px 0;posi
 .buy-btn{background:transparent;border:1px solid #fff;color:#fff;padding:10px 25px;font-family:Consolas,monospace;cursor:pointer;transition:all 0.3s;margin-top:10px;}
 .buy-btn:hover{background:#fff;color:#000;box-shadow:0 0 20px #0ff;}
 
-.lyrics{white-space:pre-wrap;font-size:1.1em;line-height:1.6;background:#0a0a0a;padding:25px;border:1px solid #fff;box-shadow:0 0 15px #0ff;text-align:center;}
-
-#jumpscare{position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;display:none;align-items:center;justify-content:center;z-index:9999;}
-#jumpscare img{width:100%;height:100%;object-fit:contain;animation:foxyflash 0.8s infinite alternate;}
-@keyframes foxyflash{from{filter:brightness(1) hue-rotate(0deg);}to{filter:brightness(2) hue-rotate(30deg);}}
-#jumpscare.active{display:flex;}
+.lyrics{white-space:pre-wrap;font-size:1.05em;line-height:1.7;background:#0a0a0a;padding:30px;border:1px solid #fff;box-shadow:0 0 15px #0ff;text-align:center;margin-top:15px;}
 </style>
 </head>
 <body>
@@ -99,12 +94,38 @@ nav{background:rgba(0,0,0,0.95);border-bottom:1px solid #fff;padding:15px 0;posi
         <div class="box">
             <h2>DOXBIN ANTHEM</h2>
             <p style="text-align:center;">by Stupidly ft. Miku</p>
+            
             <div style="text-align:center;margin:25px 0;">
                 <audio controls style="width:90%;">
                     <source src="https://files.catbox.moe/aycciv.m4a" type="audio/mpeg">
                 </audio>
             </div>
-            <div class="lyrics">YO YO WELCOME TO THE DOXBIN\nIP SNATCHIN, NO CAP, WE DROPPIN IN</div>
+
+            <div class="lyrics">
+YO YO WELCOME TO THE DOXBIN
+IP SNATCHIN, NO CAP, WE DROPPIN IN
+
+[Chorus]
+Doxbin, Doxbin, leak it all night
+Steal your info under RGB light
+Doxbin, Doxbin, we don't play nice
+One wrong move and we got your life
+
+[Verse 1]
+Kai out here likin' little kids, sad
+Mr.Any gettin' clapped in DBD, mad
+Grass suckin' dick for free on the low
+Pigbananna stealin' e-huzz, bro you slow
+
+We got the packets, we got the logs
+Telegram groups full of nasty dogs
+Send your address, send your hoe
+We'll post it all on Stupidly's show
+
+[Outro]
+Stupidly's Doxbin — we own the net
+Better watch your back... or your IP next.
+            </div>
         </div>
     </div>
 
@@ -127,19 +148,13 @@ function typeMessage(text, callback) {
     let typing = setInterval(() => {
         line.innerHTML += text.charAt(i);
         i++;
-        if (i >= text.length) {
-            clearInterval(typing);
-            callback();
-        }
+        if (i >= text.length) { clearInterval(typing); callback(); }
     }, 40);
 }
 
 function startTerminal() {
     if (index < messages.length) {
-        typeMessage(messages[index], () => {
-            index++;
-            setTimeout(startTerminal, 300);
-        });
+        typeMessage(messages[index], () => { index++; setTimeout(startTerminal, 300); });
     }
 }
 startTerminal();
