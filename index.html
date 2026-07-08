@@ -108,25 +108,13 @@ p,li,b,small{
     box-shadow:0 0 15px #fff;
     min-height:80px;
 }
-.terminal p{
-    margin:0;
-    line-height:1.5;
-}
 .case{
     border-top:1px solid #fff;
     margin-top:15px;
     padding-top:15px;
 }
-small{
-    color:#ddd;
-}
-hr{
-    border:0;
-    border-top:1px solid white;
-    box-shadow:0 0 10px white;
-}
 
-/* Nav & Upgrades */
+/* Nav */
 nav {
     background: rgba(0,0,0,0.95);
     border-bottom: 1px solid #fff;
@@ -152,14 +140,16 @@ nav {
     text-shadow: 0 0 10px #fff;
     transition: all 0.3s;
     cursor: pointer;
+    padding: 5px 15px;
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link.active {
     color: #0ff;
     text-shadow: 0 0 20px #0ff;
-    transform: translateY(-2px);
+    background: rgba(0,255,255,0.1);
 }
 
+/* Upgrades */
 .upgrades-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -180,11 +170,6 @@ nav {
     transform: scale(1.05) translateY(-10px);
     box-shadow: 0 0 30px #0ff;
     border-color: #0ff;
-}
-
-.upgrade-card h3 {
-    margin: 0 0 15px 0;
-    font-size: 1.4em;
 }
 
 .price {
@@ -210,161 +195,131 @@ nav {
     color: #000;
     box-shadow: 0 0 20px #0ff;
 }
+
+/* Tab content */
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
 </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-container">
-        <a href="#" onclick="scrollToTop(); return false;" class="nav-link">HOME</a>
-        <a href="#upgrades" class="nav-link">UPGRADES</a>
+        <a href="#" onclick="switchTab('home')" class="nav-link active" id="home-tab">HOME</a>
+        <a href="#" onclick="switchTab('upgrades')" class="nav-link" id="upgrades-tab">UPGRADES</a>
     </div>
 </nav>
 
 <div class="content">
-<div class="box">
-<div class="image-container">
-    <img src="https://cdn.phototourl.com/free/2026-07-08-4df67943-1bab-4d54-91fa-409c6a1251f3.png" alt="Stupidly Logo">
-</div>
-<h1 data-text="Stupidly's doxbin">Stupidly's doxbin</h1>
-<div class="terminal">
-<p id="boot"></p>
-</div>
-<p>
-Status:
-<span>ONLINE</span>
-<span class="cursor">█</span>
-</p>
-<hr>
-<p>
-<strong>NOTICE:</strong><br>
-I am a super evil hacker and i will steal ALL ur info pal.
-</p>
-</div>
 
-<div class="box">
-<h2>Recent Case Files</h2>
-<!-- Your cases stay here -->
-<div class="case">
-<b>KAI</b><br>
-Charges:
-<ul>
-<li>liking little kids.</li>
-<li>being gay.</li>
-<li>no bitches.</li>
-<li>IP: 117.182.181.250</li>
-</ul>
-</div>
-<div class="case">
-<b>Mr.ANY</b><br>
-Charges:
-<ul>
-<li>Being ASS at dbd.</li>
-<li>Being an e-kitten.</li>
-<li>says he carries in bo3 but is a bum .</li>
-<li>IP: 208.107.206.162</li>
-</ul>
-</div>
-<div class="case">
-<b>grass (aka kais cum slut)</b><br>
-Charges:
-<ul>
-<li>sucking kai off.</li>
-<li>being a swinger.</li>
-<li>being bad at repo (or all games).</li>
-<li>dont know game (prolly likes dudes).</li>
-<li>IP: 676.676.67.676</li>
-</ul>
-</div>
-<div class="case">
-<b>pigbananna</b><br>
-Charges:
-<ul>
-<li>pulling my e-huzz.</li>
-<li>talking to MY girls.</li>
-<li>calling me a limbus larp.</li>
-<li>IP: 163.106.73.217</li>
-</ul>
-</div>
-</div>
+    <!-- HOME TAB -->
+    <div id="home" class="tab-content active">
+        <div class="box">
+            <div class="image-container">
+                <img src="https://cdn.phototourl.com/free/2026-07-08-4df67943-1bab-4d54-91fa-409c6a1251f3.png" alt="Stupidly Logo">
+            </div>
+            <h1 data-text="Stupidly's doxbin">Stupidly's doxbin</h1>
+            <div class="terminal">
+                <p id="boot"></p>
+            </div>
+            <p>Status: <span>ONLINE</span><span class="cursor">█</span></p>
+            <hr>
+            <p><strong>NOTICE:</strong><br>I am a super evil hacker and i will steal ALL ur info pal.</p>
+        </div>
 
-<div id="upgrades" class="box">
-    <h2>STUPIDLY UPGRADES</h2>
-    <p style="text-align:center; margin-bottom:25px;">Choose your level of degeneracy</p>
-    
-    <div class="upgrades-grid">
-        <div class="upgrade-card">
-            <h3>STUPIDLY VIP</h3>
-            <div class="price">$50</div>
-            <p>Basic hacker privileges<br>Early case access<br>Custom title</p>
-            <button class="buy-btn" onclick="fakePurchase('Stupidly VIP')">BUY NOW</button>
-        </div>
-        
-        <div class="upgrade-card">
-            <h3>STUPIDLY CRIMINAL</h3>
-            <div class="price">$125</div>
-            <p>Full dox access<br>Priority requests<br>Remove your own dox</p>
-            <button class="buy-btn" onclick="fakePurchase('Stupidly Criminal')">BUY NOW</button>
-        </div>
-        
-        <div class="upgrade-card">
-            <h3>RICH</h3>
-            <div class="price">$250</div>
-            <p>God tier access<br>Custom dox requests<br>Private section</p>
-            <button class="buy-btn" onclick="fakePurchase('Rich')">BUY NOW</button>
-        </div>
-        
-        <div class="upgrade-card">
-            <h3>STUPIDLY'S E-KITTEN</h3>
-            <div class="price">$500</div>
-            <p>Ultimate simp package<br>Personal attention<br>Unlimited favors</p>
-            <button class="buy-btn" onclick="fakePurchase('Stupidly\'s E-Kitten')">BUY NOW</button>
+        <div class="box">
+            <h2>Recent Case Files</h2>
+            <div class="case"><b>KAI</b><br>Charges:<ul><li>liking little kids.</li><li>being gay.</li><li>no bitches.</li><li>IP: 117.182.181.250</li></ul></div>
+            <div class="case"><b>Mr.ANY</b><br>Charges:<ul><li>Being ASS at dbd.</li><li>Being an e-kitten.</li><li>says he carries in bo3 but is a bum .</li><li>IP: 208.107.206.162</li></ul></div>
+            <div class="case"><b>grass (aka kais cum slut)</b><br>Charges:<ul><li>sucking kai off.</li><li>being a swinger.</li><li>being bad at repo (or all games).</li><li>dont know game (prolly likes dudes).</li><li>IP: 676.676.67.676</li></ul></div>
+            <div class="case"><b>pigbananna</b><br>Charges:<ul><li>pulling my e-huzz.</li><li>talking to MY girls.</li><li>calling me a limbus larp.</li><li>IP: 163.106.73.217</li></ul></div>
         </div>
     </div>
-</div>
 
-<div class="box">
-<small></small>
-</div>
+    <!-- UPGRADES TAB -->
+    <div id="upgrades" class="tab-content">
+        <div class="box">
+            <h2>STUPIDLY UPGRADES</h2>
+            <p style="text-align:center; margin-bottom:25px;">Choose your level of degeneracy</p>
+            
+            <div class="upgrades-grid">
+                <div class="upgrade-card">
+                    <h3>STUPIDLY VIP</h3>
+                    <div class="price">$50</div>
+                    <p>Basic hacker privileges<br>Early case access<br>Custom title</p>
+                    <button class="buy-btn" onclick="fakePurchase('Stupidly VIP')">BUY NOW</button>
+                </div>
+                <div class="upgrade-card">
+                    <h3>STUPIDLY CRIMINAL</h3>
+                    <div class="price">$125</div>
+                    <p>Full dox access<br>Priority requests<br>Remove your own dox</p>
+                    <button class="buy-btn" onclick="fakePurchase('Stupidly Criminal')">BUY NOW</button>
+                </div>
+                <div class="upgrade-card">
+                    <h3>RICH</h3>
+                    <div class="price">$250</div>
+                    <p>God tier access<br>Custom dox requests<br>Private section</p>
+                    <button class="buy-btn" onclick="fakePurchase('Rich')">BUY NOW</button>
+                </div>
+                <div class="upgrade-card">
+                    <h3>STUPIDLY'S E-KITTEN</h3>
+                    <div class="price">$500</div>
+                    <p>Ultimate simp package<br>Personal attention<br>Unlimited favors</p>
+                    <button class="buy-btn" onclick="fakePurchase('Stupidly\'s E-Kitten')">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-const messages=[
-"getting bad bitches to erp",
-"Connecting to hot moms in your area...",
-"Loading questionable telegram chanel...",
-"Scanning for nudes...",
-"Downloading CP...",
-"Access Granted."
+const messages = [
+    "getting bad bitches to erp",
+    "Connecting to hot moms in your area...",
+    "Loading questionable telegram chanel...",
+    "Scanning for nudes...",
+    "Downloading CP...",
+    "Access Granted."
 ];
-let terminal=document.getElementById("boot");
-let index=0;
 
-function typeMessage(text,callback){
-    let i=0;
-    let line=document.createElement("div");
+let terminal = document.getElementById("boot");
+let index = 0;
+
+function typeMessage(text, callback) {
+    let i = 0;
+    let line = document.createElement("div");
     terminal.appendChild(line);
-    let typing=setInterval(()=>{
+    let typing = setInterval(() => {
         line.innerHTML += text.charAt(i);
         i++;
-        if(i>=text.length){
+        if (i >= text.length) {
             clearInterval(typing);
             callback();
         }
-    },40);
+    }, 40);
 }
-function startTerminal(){
-    if(index < messages.length){
-        typeMessage(messages[index],()=>{
+
+function startTerminal() {
+    if (index < messages.length) {
+        typeMessage(messages[index], () => {
             index++;
-            setTimeout(startTerminal,300);
+            setTimeout(startTerminal, 300);
         });
     }
 }
 startTerminal();
 
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    document.getElementById(tab + '-tab').classList.add('active');
 }
 
 function fakePurchase(tier) {
